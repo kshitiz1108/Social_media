@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import dotenv from 'dotenv';
 import connectDB from './db/connectDB.js';
 import cookieParser from 'cookie-parser';
@@ -13,6 +14,7 @@ connectDB();
 
 
 const PORT = process.env.PORT || 3000;
+const __dirname = path.resolve();
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -28,5 +30,18 @@ app.use(cookieParser());
 app.use('/api/users', userRoutes);
 app.use('/api/posts' , postRoutes);
 app.use('/api/messages' , messageRoutes);
+
+
+if (process.env.NODE_ENV === "production") {
+  const staticPath = path.join(__dirname, "/frontend/dist");
+
+  app.use(express.static(staticPath));
+
+  app.get("*", (req, res) => {
+    const indexPath = path.resolve(__dirname, "frontend", "dist", "index.html");
+
+    res.sendFile(indexPath);
+  });
+}
 
 server.listen(PORT, () => console.log(`Server is running at port ${PORT}`));

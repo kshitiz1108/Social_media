@@ -53,7 +53,8 @@ const UpdateProfilePage = () => {
 				return;
             }
             showToast("Success", "Profile updated successfully", "success");
-			setUser(data);
+            
+			      setUser(data);
 			localStorage.setItem("user-threads", JSON.stringify(data));
         } catch (error) {
             console.log(error)

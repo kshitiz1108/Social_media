@@ -39,7 +39,7 @@ const UserPage = () => {
     }
     getUserPosts();
     
-  }, [username,showToast,SetPosts]);
+  }, [username,showToast,SetPosts,user]);
   console.log("Posts are here and it is recoil", posts)
 
   if (!user && loading) {
