@@ -1,5 +1,5 @@
 import express from 'express'
-import {followUnfollowUser, freezeAccount, getSuggestedUsers, getUserProfile, loginUser, logoutUser, signupUser, updateUser} from '../controllers/usercontroller.js';
+import {followUnfollowUser, freezeAccount, getSuggestedUsers, getUserProfile, loginUser, logoutUser, signupUser, updateUser} from '../controllers/userController.js';
 import protectRoute from '../middlewares/protectRoute.js';
 
 
